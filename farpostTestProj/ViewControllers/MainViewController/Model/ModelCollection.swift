@@ -2,5 +2,5 @@
 import UIKit
 
 struct ImageItem {
-    let image: UIImage?
+    let image: String 
 }
