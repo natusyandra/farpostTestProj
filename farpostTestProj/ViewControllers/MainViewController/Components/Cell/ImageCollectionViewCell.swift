@@ -2,16 +2,14 @@
 import UIKit
 
 class ImageCollectionViewCell: UICollectionViewCell {
+    
     static let identifier = "ImageCollectionViewCell"
     
-     var tableImageView: UIImageView = {
-         let imageView = UIImageView()
-         imageView.clipsToBounds = true
-         imageView.contentMode = .scaleAspectFill
-         imageView.translatesAutoresizingMaskIntoConstraints = false
-//         imageView.imageFromServerURL("https://cdn.arstechnica.net/wp-content/uploads/2018/06/macOS-Mojave-Dynamic-Wallpaper-transition.jpg", placeHolder: .add)
-//        imageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
-//        imageView.image = UIImage(named: "bikeImage")
+    var tableImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -41,26 +39,28 @@ class ImageCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-
-    public func setupData(_ data: String) {
-        DispatchQueue.global(qos: .background).async { [self] in
-            self.tableImageView.imageFromServerURL(data, placeHolder: .add)
-        }
-    }
-    
 //    public func setupData(_ data: String) {
-//        tableImageView.imageFromServerURL(data, placeHolder: .add)
+//        DispatchQueue.global(qos: .background).async { [self] in
+//            self.tableImageView.imageFromServerURL(data, placeHolder: .add)
+//        }
 //    }
+    
+        public func setupData(_ data: String) {
+            tableImageView.imageFromServerURL(data, placeHolder: .add)
+        }
 }
 
 extension UIImageView {
-    
+    // в отдебный папку
     func imageFromServerURL(_ URLString: String, placeHolder: UIImage?) {
         
-        self.image = nil
-        //If imageurl's imagename has space then this line going to work for this
         let imageServerUrl = URLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
+        if let image = ImageCache.getImage(urlString: imageServerUrl) {
+            self.image = image
+            return
+        }
+
         if let url = URL(string: imageServerUrl) {
             URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
                 
@@ -77,6 +77,8 @@ extension UIImageView {
                         if let downloadedImage = UIImage(data: data) {
                             
                             self.image = downloadedImage
+                            
+                            ImageCache.storeImage(urlString: imageServerUrl, img: downloadedImage)
                         }
                     }
                 }
