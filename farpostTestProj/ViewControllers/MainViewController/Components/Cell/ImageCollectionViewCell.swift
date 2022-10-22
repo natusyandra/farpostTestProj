@@ -41,9 +41,16 @@ class ImageCollectionViewCell: UICollectionViewCell {
         ])
     }
     
+
     public func setupData(_ data: String) {
-        tableImageView.imageFromServerURL(data, placeHolder: .add)
-            }
+        DispatchQueue.global(qos: .background).async { [self] in
+            self.tableImageView.imageFromServerURL(data, placeHolder: .add)
+        }
+    }
+    
+//    public func setupData(_ data: String) {
+//        tableImageView.imageFromServerURL(data, placeHolder: .add)
+//    }
 }
 
 extension UIImageView {
@@ -53,7 +60,6 @@ extension UIImageView {
         self.image = nil
         //If imageurl's imagename has space then this line going to work for this
         let imageServerUrl = URLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        
         
         if let url = URL(string: imageServerUrl) {
             URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
