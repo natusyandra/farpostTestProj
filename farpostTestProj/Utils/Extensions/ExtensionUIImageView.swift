@@ -7,7 +7,9 @@ extension UIImageView {
         let imageServerUrl = URLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
         if let image = ImageCache.getImage(urlString: imageServerUrl) {
-            self.image = image
+            DispatchQueue.main.async {
+                self.image = image
+            }
             return
         }
 

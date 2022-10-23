@@ -17,6 +17,14 @@ class MainViewController: UIViewController, MainViewProtocol {
         layoutConstraints()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        guard let flowLayout = mainView.imageCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return
+        }
+        flowLayout.invalidateLayout()
+    }
+    
     func setupViews() {
         view.addSubview(mainView)
     }

@@ -4,9 +4,8 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "ImageCollectionViewCell"
     
-    var tableImageView: UIImageView = {
+    var imageViewInCell: UIImageView = {
         let imageView = UIImageView()
-        imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -14,12 +13,12 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        tableImageView.frame = contentView.bounds
+        imageViewInCell.frame = contentView.bounds
     }
     
     override init(frame: CGRect) {
         super .init(frame: frame)
-        contentView.addSubview(tableImageView)
+        contentView.addSubview(imageViewInCell)
         contentView.clipsToBounds = true
         layoutConstraints()
     }
@@ -30,16 +29,16 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     func layoutConstraints() {
         NSLayoutConstraint.activate([
-            tableImageView.rightAnchor.constraint(equalTo: rightAnchor),
-            tableImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            tableImageView.leftAnchor.constraint(equalTo: leftAnchor),
-            tableImageView.topAnchor.constraint(equalTo: topAnchor),
+            imageViewInCell.rightAnchor.constraint(equalTo: rightAnchor),
+            imageViewInCell.bottomAnchor.constraint(equalTo: bottomAnchor),
+            imageViewInCell.leftAnchor.constraint(equalTo: leftAnchor),
+            imageViewInCell.topAnchor.constraint(equalTo: topAnchor),
         ])
     }
     
     public func setupData(_ data: String) {
         DispatchQueue.global(qos: .background).async { [self] in
-            self.tableImageView.imageFromServerURL(data, placeHolder: .add)
+            self.imageViewInCell.imageFromServerURL(data, placeHolder: .add)
         }
     }
     
@@ -47,4 +46,5 @@ class ImageCollectionViewCell: UICollectionViewCell {
 //            tableImageView.imageFromServerURL(data, placeHolder: .add)
 //        }
 }
+
 
