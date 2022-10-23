@@ -1,4 +1,3 @@
-
 import UIKit
 
 protocol MainViewProtocol: AnyObject {
@@ -7,13 +6,10 @@ protocol MainViewProtocol: AnyObject {
 
 class MainView: UIView {
     
-//    var data = [UIColor.red, UIColor.green, UIColor.blue, UIColor.green, UIColor.purple, UIColor.orange, UIColor.blue, UIColor.green, UIColor.blue, UIColor.green, UIColor.red, UIColor.green, UIColor.blue, UIColor.green, UIColor.purple, UIColor.orange, UIColor.blue, UIColor.green, UIColor.blue, UIColor.green, UIColor.red, UIColor.green, UIColor.blue, UIColor.green, UIColor.purple, UIColor.orange, UIColor.blue, UIColor.green, UIColor.blue, UIColor.green, UIColor.red, UIColor.green, UIColor.blue, UIColor.green, UIColor.purple, UIColor.orange, UIColor.blue, UIColor.green, UIColor.blue, UIColor.green]
-//
     private lazy var imageCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-//        layout.itemSize = CGSize(width: 60, height: 60)
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
         view.delegate = self
@@ -24,7 +20,8 @@ class MainView: UIView {
     
     public var delegate: MainViewProtocol?
     
-    public var dataSource: [String] = ["https://cdn.arstechnica.net/wp-content/uploads/2018/06/macOS-Mojave-Dynamic-Wallpaper-transition.jpg", "https://cdn.arstechnica.net/wp-content/uploads/2018/06/macOS-Mojave-Dynamic-Wallpaper-transition.jpg", "https://cdn.arstechnica.net/wp-content/uploads/2018/06/macOS-Mojave-Dynamic-Wallpaper-transition.jpg", "https://cdn.arstechnica.net/wp-content/uploads/2018/06/macOS-Mojave-Dynamic-Wallpaper-transition.jpg", "https://cdn.arstechnica.net/wp-content/uploads/2018/06/macOS-Mojave-Dynamic-Wallpaper-transition.jpg", "https://cdn.arstechnica.net/wp-content/uploads/2018/06/macOS-Mojave-Dynamic-Wallpaper-transition.jpg"] {
+    public var dataSource: [String] = ["https://upload.wikimedia.org/wikipedia/commons/1/13/Rhamnus_frangula_13_ies.jpg", "https://upload.wikimedia.org/wikipedia/commons/2/2e/Steel-bridge-800x600.JPG", "https://upload.wikimedia.org/wikipedia/commons/5/5a/Euphorbia_squarrosa.jpeg", "https://petapixel.com/assets/uploads/2020/12/riverjpg-800x600.jpg", "https://aviationweek.com/sites/default/files/styles/crop_freeform/public/2022-10/atlas_air_747-8f_source_boeing.jpeg?itok=vzYTtPpU"] {
+        
         didSet {
             imageCollectionView.reloadData()
             imageCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .top)

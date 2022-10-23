@@ -18,6 +18,7 @@
 		6EB5295A29011E480090F112 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB5295929011E480090F112 /* ImageCollectionViewCell.swift */; };
 		6EB5295D29013D1F0090F112 /* ModelCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB5295C29013D1F0090F112 /* ModelCollection.swift */; };
 		6EBAAD172903C0410020314D /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBAAD162903C0410020314D /* ImageCache.swift */; };
+		6EBAAD1A2904DB860020314D /* ExtensionUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBAAD192904DB860020314D /* ExtensionUIImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		6EB5295929011E480090F112 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		6EB5295C29013D1F0090F112 /* ModelCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCollection.swift; sourceTree = "<group>"; };
 		6EBAAD162903C0410020314D /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		6EBAAD192904DB860020314D /* ExtensionUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +118,7 @@
 		6EB5295629011B9B0090F112 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				6EB5295729011BC00090F112 /* MainView.swift */,
+				6EBAAD1B2904DC850020314D /* View */,
 				6EB5295529011B0D0090F112 /* Cell */,
 			);
 			path = Components;
@@ -133,9 +135,34 @@
 		6EBAAD152903C00B0020314D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				6EBAAD162903C0410020314D /* ImageCache.swift */,
+				6EBAAD1C2904DD460020314D /* Cache */,
+				6EBAAD182904DB6A0020314D /* Extensions */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		6EBAAD182904DB6A0020314D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6EBAAD192904DB860020314D /* ExtensionUIImageView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6EBAAD1B2904DC850020314D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6EB5295729011BC00090F112 /* MainView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6EBAAD1C2904DD460020314D /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				6EBAAD162903C0410020314D /* ImageCache.swift */,
+			);
+			path = Cache;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,6 +243,7 @@
 				6EB5294029010F4D0090F112 /* MainViewController.swift in Sources */,
 				6EB5293C29010F4D0090F112 /* AppDelegate.swift in Sources */,
 				6EB5294629010F4D0090F112 /* farpostTestProj.xcdatamodeld in Sources */,
+				6EBAAD1A2904DB860020314D /* ExtensionUIImageView.swift in Sources */,
 				6EB5293E29010F4D0090F112 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,12 +392,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = /Users/Unicon/Desktop/farpost/farpostTestProj/farpostTestProj/Resources/Info.plist;
+				INFOPLIST_FILE = farpostTestProj/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -391,12 +420,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = /Users/Unicon/Desktop/farpost/farpostTestProj/farpostTestProj/Resources/Info.plist;
+				INFOPLIST_FILE = farpostTestProj/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
