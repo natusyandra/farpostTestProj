@@ -42,9 +42,9 @@ class ImageCollectionViewCell: UICollectionViewCell {
         }
     }
     
-//        public func setupData(_ data: String) {
-//            tableImageView.imageFromServerURL(data, placeHolder: .add)
-//        }
+    //        public func setupData(_ data: String) {
+    //            tableImageView.imageFromServerURL(data, placeHolder: .add)
+    //        }
 }
 
 

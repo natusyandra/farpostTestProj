@@ -1,7 +1,7 @@
 import UIKit
 
 class MainViewController: UIViewController, MainViewProtocol {
-
+    
     private lazy var mainView: MainView = {
         var view = MainView()
         view.delegate = self
@@ -28,7 +28,7 @@ class MainViewController: UIViewController, MainViewProtocol {
     func setupViews() {
         view.addSubview(mainView)
     }
-
+    
     func layoutConstraints() {
         NSLayoutConstraint.activate([
             mainView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -37,9 +37,9 @@ class MainViewController: UIViewController, MainViewProtocol {
             mainView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
-//    
-//    func selectItem(_ index: Int) {
-//        return
-//    }
+    //
+    //    func selectItem(_ index: Int) {
+    //        return
+    //    }
 }
 
