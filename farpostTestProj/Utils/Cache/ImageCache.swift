@@ -30,7 +30,7 @@ class ImageCache {
     }
     
     static func removeCache() {
-        UserDefaults.standard.removeObject(forKey: "ImageCache")
+        UserDefaults.standard.set(nil, forKey: "ImageCache")
     }
 }
 
