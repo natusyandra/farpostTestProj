@@ -20,6 +20,8 @@ class MainView: UIView {
         return view
     }()
     
+    var refreshControl = UIRefreshControl()
+    
     public var delegate: MainViewProtocol?
     
     public var dataSource = DataManager().images
@@ -30,6 +32,7 @@ class MainView: UIView {
         backgroundColor = .systemBackground
         setupViews()
         layoutConstraints()
+        setupCollectionView()
     }
     
     required init?(coder: NSCoder) {
@@ -47,6 +50,26 @@ class MainView: UIView {
             imageCollectionView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10),
             imageCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
         ])
+    }
+    
+    func setupCollectionView(){
+        //        imageCollectionView.delegate = self
+        //        imageCollectionView.dataSource = self
+        imageCollectionView.alwaysBounceVertical = true
+        refreshControl.attributedTitle = NSAttributedString(string: "Refreshing content...")
+        refreshControl.addTarget(self, action: #selector(refreshImageData), for: .valueChanged)
+        imageCollectionView.addSubview(refreshControl)
+    }
+    
+    @objc func refreshImageData(refreshControl: UIRefreshControl) {
+        DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1)) {
+            DispatchQueue.main.async { [self] in
+                ImageCache.removeCache()
+                dataSource = DataManager().images
+                imageCollectionView.reloadData()
+                refreshControl.endRefreshing()
+            }
+        }
     }
 }
 

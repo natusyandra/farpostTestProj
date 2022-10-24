@@ -28,5 +28,9 @@ class ImageCache {
         dict![urlString] = path
         UserDefaults.standard.set(dict, forKey: "ImageCache")
     }
+    
+    static func removeCache() {
+        UserDefaults.standard.removeObject(forKey: "ImageCache")
+    }
 }
 
