@@ -2,8 +2,6 @@ import UIKit
 
 class MainView: UIView {
     
-    public var dataSource = DataManager().images
-    
     lazy var imageCollectionView: UICollectionView = {
         let layout = SelfSizingFlowLayout()
         layout.scrollDirection = .vertical
@@ -18,6 +16,8 @@ class MainView: UIView {
         view.showsHorizontalScrollIndicator  = false
         return view
     }()
+    
+    public var dataSource = DataManager().images
     
     let refreshControl = UIRefreshControl()
     

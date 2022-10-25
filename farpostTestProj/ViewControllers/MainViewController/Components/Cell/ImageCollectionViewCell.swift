@@ -6,7 +6,6 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     let imageViewInCell: UIImageView = {
         let imageView = UIImageView()
-//        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
