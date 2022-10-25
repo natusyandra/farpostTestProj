@@ -7,8 +7,10 @@ class MainView: UIView {
     lazy var imageCollectionView: UICollectionView = {
         let layout = SelfSizingFlowLayout()
         layout.scrollDirection = .vertical
-        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        view.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
+        let view = UICollectionView(frame: .zero,
+                                    collectionViewLayout: layout)
+        view.register(ImageCollectionViewCell.self,
+                      forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
         view.delegate = self
         view.dataSource = self
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +50,9 @@ class MainView: UIView {
     func setupCollectionView(){
         imageCollectionView.alwaysBounceVertical = true
         refreshControl.attributedTitle = NSAttributedString(string: "Refreshing content...")
-        refreshControl.addTarget(self, action: #selector(refreshImageData), for: .valueChanged)
+        refreshControl.addTarget(self,
+                                 action: #selector(refreshImageData),
+                                 for: .valueChanged)
         imageCollectionView.addSubview(refreshControl)
     }
     

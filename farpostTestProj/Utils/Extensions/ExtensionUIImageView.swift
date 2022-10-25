@@ -1,7 +1,7 @@
 import UIKit
 
 extension UIImageView {
-
+    
     func imageFromServerURL(_ URLString: String, placeHolder: UIImage?) {
         
         let imageServerUrl = URLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
@@ -13,7 +13,7 @@ extension UIImageView {
             }
             return
         }
-
+        
         if let url = URL(string: imageServerUrl) {
             URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
                 print("URLSession load image")
