@@ -1,30 +1,23 @@
 import UIKit
 
-protocol MainViewProtocol: AnyObject {
-    //    func selectItem(_ index: Int)
-}
-
 class MainView: UIView {
     
+    public var dataSource = DataManager().images
+    
     lazy var imageCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
+        let layout = SelfSizingFlowLayout()
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.collectionView?.center = .zero
-        //        layout.itemSize = UICollectionViewFlowLayout.automaticSize
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
         view.delegate = self
         view.dataSource = self
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.showsVerticalScrollIndicator = false
+        view.showsHorizontalScrollIndicator  = false
         return view
     }()
     
-    var refreshControl = UIRefreshControl()
-    
-    public var delegate: MainViewProtocol?
-    
-    public var dataSource = DataManager().images
+    let refreshControl = UIRefreshControl()
     
     init() {
         super.init(frame: .zero)
@@ -53,8 +46,6 @@ class MainView: UIView {
     }
     
     func setupCollectionView(){
-        //        imageCollectionView.delegate = self
-        //        imageCollectionView.dataSource = self
         imageCollectionView.alwaysBounceVertical = true
         refreshControl.attributedTitle = NSAttributedString(string: "Refreshing content...")
         refreshControl.addTarget(self, action: #selector(refreshImageData), for: .valueChanged)
@@ -62,14 +53,10 @@ class MainView: UIView {
     }
     
     @objc func refreshImageData(refreshControl: UIRefreshControl) {
-        DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1)) {
-            DispatchQueue.main.async { [self] in
-                ImageCache.removeCache()
-                dataSource = DataManager().images
-                imageCollectionView.reloadData()
-                refreshControl.endRefreshing()
-            }
-        }
+        ImageCache.removeCache()
+        dataSource = DataManager().images
+        imageCollectionView.reloadData()
+        refreshControl.endRefreshing()
     }
 }
 
@@ -101,6 +88,8 @@ extension MainView: UICollectionViewDataSource, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.dataSource.remove(at: indexPath.row)
         collectionView.deleteItems(at: [indexPath])
+        
     }
 }
+
 

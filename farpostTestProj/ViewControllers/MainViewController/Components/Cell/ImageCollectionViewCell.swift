@@ -4,9 +4,9 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "ImageCollectionViewCell"
     
-    var imageViewInCell: UIImageView = {
+    let imageViewInCell: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+//        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -14,6 +14,10 @@ class ImageCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         imageViewInCell.frame = contentView.bounds
+    }
+    
+    override func prepareForReuse() {
+        imageViewInCell.image = nil
     }
     
     override init(frame: CGRect) {
@@ -41,10 +45,6 @@ class ImageCollectionViewCell: UICollectionViewCell {
             self.imageViewInCell.imageFromServerURL(data, placeHolder: .add)
         }
     }
-    
-    //        public func setupData(_ data: String) {
-    //            tableImageView.imageFromServerURL(data, placeHolder: .add)
-    //        }
 }
 
 

@@ -1,10 +1,9 @@
 import UIKit
 
-class MainViewController: UIViewController, MainViewProtocol {
+class MainViewController: UIViewController {
     
     private lazy var mainView: MainView = {
         var view = MainView()
-        view.delegate = self
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -15,14 +14,11 @@ class MainViewController: UIViewController, MainViewProtocol {
         navigationController?.isNavigationBarHidden = false
         setupViews()
         layoutConstraints()
-        
-//        refreshControl.tintColor = UIColor.white
-//        refreshControl.addTarget(self, action: #selector(handleRefresh(refreshControl:)), for: UIControl.Event.valueChanged)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        guard let flowLayout = mainView.imageCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+        guard let flowLayout = mainView.imageCollectionView.collectionViewLayout as? SelfSizingFlowLayout else {
             return
         }
         flowLayout.invalidateLayout()
@@ -40,25 +36,6 @@ class MainViewController: UIViewController, MainViewProtocol {
             mainView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
-    
-//    func configureRefreshControl () {
-//        mainView.imageCollectionView.refreshControl = UIRefreshControl()
-//        mainView.imageCollectionView.refreshControl?.addTarget(self,
-//         action: #selector(handleRefreshControl),
-//         for: .valueChanged)
-//    }
-//
-//    @objc func handleRefreshControl() {
-//       // Update your content…
-//
-//       // Dismiss the refresh control.
-//       DispatchQueue.main.async {
-//          self.mainView.imageCollectionView.refreshControl?.endRefreshing()
-//       }
-//    }
-    //
-    //    func selectItem(_ index: Int) {
-    //        return
-    //    }
+
 }
 
