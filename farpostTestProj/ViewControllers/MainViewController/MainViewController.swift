@@ -36,6 +36,5 @@ class MainViewController: UIViewController {
             mainView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
-
 }
 
